@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 streamlit
 tensorflow
 numpy
 opencv-python
+=======
+streamlit
+tensorflow
+numpy
+opencv-python
+>>>>>>> 864f1d80cf72a60de15f140f046eb98db54f6c3a
 pillow
