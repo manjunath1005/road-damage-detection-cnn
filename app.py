@@ -9,7 +9,31 @@ import matplotlib.pyplot as plt
 # =========================
 # LOAD MODEL & LABELS
 # =========================
-model = tf.keras.models.load_model("road_damage_cnn.keras")
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D
+from tensorflow.keras.layers import Flatten, Dense, Dropout
+
+# Rebuild model architecture
+model = Sequential([
+    Conv2D(32, (3,3), activation='relu', input_shape=(128,128,3)),
+    MaxPooling2D(2,2),
+
+    Conv2D(64, (3,3), activation='relu'),
+    MaxPooling2D(2,2),
+
+    Conv2D(128, (3,3), activation='relu'),
+    MaxPooling2D(2,2),
+
+    Flatten(),
+
+    Dense(128, activation='relu'),
+    Dropout(0.5),
+
+    Dense(3, activation='softmax')
+])
+
+# Load weights only
+model.load_weights("model.weights.h5")
 
 with open("label_map.json", "r") as f:
     class_names = json.load(f)
